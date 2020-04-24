@@ -30,11 +30,13 @@ header {
     border-bottom: 1px solid rgb(182, 182, 182);
     margin-left: 7%;
     margin-right: 7%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.category p {
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
+.category a {
+    text-decoration: none;
+    color: black;
 }
 
 #post-cards {
@@ -100,9 +102,26 @@ header {
     margin-block-end: 0.2em;
 }
 
-.sidebar p {
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
+.profile-image {
+    max-width: 80%;
+    border-radius: 50%;
+}
+
+.categories-text {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.search-bar {
+    border: 1px solid rgb(182, 182, 182);
+    margin-top: 10px;
+}
+
+.categories-sidebar {
+    display: flex;
+    flex-direction: column;
 }
 
 footer {
@@ -117,9 +136,23 @@ footer {
 
 @media screen and (max-width: 500px) {
     .sidebar {
-      /*visibility: hidden;*/
+        border-left: none;
+        border-top: 1px solid rgb(182, 182, 182);
+        margin: 7% 7% 5% 7%;
     }
-  }
+    .profile-image, .sidebar h2, .categories-sidebar {
+        display: none;
+    }
+    .sidebar-text {
+        margin-left: 7%;
+        margin-right: 7%;
+        font-size: 0.9em;
+    }
+    .search-bar {
+        width: 40%;
+    }
+
+}
 
 /* Large Screens */
 
@@ -130,11 +163,20 @@ footer {
         grid-template-rows: 1fr 10fr 1fr;
         grid-template-areas: "header header header header" "content content content about" "footer footer footer footer";
     }
+    #categories-bar {
+        margin-left: 4%;
+        margin-right: 4%;
+    }
     #post-cards {
         grid-area: content;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         padding: 2%;
+    }
+    .sidebar-text {
+        font-size: 0.8em;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 }
