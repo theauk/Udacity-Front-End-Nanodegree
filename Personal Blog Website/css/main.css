@@ -17,63 +17,58 @@ body {
     grid-template-areas: "header" "content" "about" "footer";
 }
 
-.post {
+#post-cards {
     grid-area: content;
-    margin-left: 10%;
-    margin-right: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
-.post-date {
-    margin-top: 20px;
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid rgb(138, 138, 138);
+    background-color: rgb(241, 241, 241);
+    padding: 5%;
+    margin: 6% 7% 0% 7%;
+}
+
+.date {
+    margin-top: 7px;
+    margin-bottom: 1px;
     font-size: 0.7em;
     letter-spacing: 2px;
 }
 
-.post-title {
-    margin-block-start: 0.5em;
-    margin-block-end: 0.7em;
-}
-
-.social-sharing p {
-    margin-block-end: 0.5em;
-    font-size: 0.8em;
-    font-style: italic;
-}
-
-.social-sharing-text {
-    color: grey;
-    text-decoration: none;
-    font-size: 0.9em;
-}
-
-.post-image {
+.card-image {
     max-width: 100%;
+    height: auto;
 }
 
-.caption {
-    margin-block-start: 0.5em;
-    font-style: italic;
-    font-size: 0.9em;
+.blog-post-title {
+    margin-top: 5px;
+    margin-bottom: 2px;
 }
 
-.post-quote {
-    color: rgb(90, 69, 41);
+.blog-card-text {
+    margin-top: 8px;
+    margin-bottom: 13px;
 }
 
-.previous {
-    margin-top: 40px;
-    margin-bottom: 15px;
-}
-
-.previous-post {
+.read-button {
     background-color: #222;
     color: white;
     text-align: left;
     padding: 5px;
-    font-size: 0.9em;
+    font: lighter 7px;
     letter-spacing: 1px;
     text-decoration: none;
 }
+
+/* Large Screens */
 
 @media (min-width:500px) {
     .grid-container {
@@ -82,4 +77,12 @@ body {
         grid-template-rows: 1fr 10fr 1fr;
         grid-template-areas: "header header header header" "content content content about" "footer footer footer footer";
     }
+    #post-cards {
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding: 2%;
+    }
+
 }

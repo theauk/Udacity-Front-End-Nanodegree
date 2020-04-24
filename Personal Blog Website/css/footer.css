@@ -1,0 +1,9 @@
+footer {
+    grid-area: footer;
+    background-color: rgb(175, 175, 175);
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 12px;
+}
