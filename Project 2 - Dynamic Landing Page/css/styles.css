@@ -107,6 +107,11 @@ section {
     transition: ease 0.3s all;
 }
 
+.active-nav .menu__link {
+    color: #fff;
+    background: #333;
+}
+
 /* Header Styles */
 .page__header {
     background: #fff;

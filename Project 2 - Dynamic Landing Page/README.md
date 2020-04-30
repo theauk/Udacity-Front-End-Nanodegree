@@ -4,6 +4,7 @@ Landing page converted from static to dynamic via Javascript.
 
 ## Includes:
 * Dynamically built navigation section.
-* Highlighting the active section in the viewport when scrolling.
-* Scroll to the appropriate section from the navigation menu.
+* Highlights the active section in the viewport when scrolling.
+* Adds an active state to the navigation items when a section is in the viewport.
+* Scrolls to the appropriate section when clicking the navigation menu.
 * Scroll to top button.

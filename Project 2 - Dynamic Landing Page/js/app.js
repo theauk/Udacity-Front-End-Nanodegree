@@ -45,30 +45,31 @@ function inViewport(elem) {
  * 
 */
 
-// Build the nav and scroll to functionality
+// Function for building the nav and the scroll to functionality
 function navBarBuild() {
 
     let navFragment = document.createDocumentFragment();
 
     for (let i = 0; i < navElems.length; i++) {
 
-        // Create a list node and link.
+        // Create a list node and link
         let li = document.createElement('li');
         let a = document.createElement('a');
 
-        // Find the current section name.
+        // Find the current section name
         let sectionName = document.querySelectorAll('section h2')[i].textContent;
 
-        // Create a link with section anchor and a class.
+        // Create a link with section anchor and a class
         a.appendChild(document.createTextNode(sectionName));
         a.href = `#${navElems[i].id}`
         a.classList.add('menu__link');
 
-        // Append the a to the li and then the li to the fragment.
+        // Append the a to the li and then the li to the fragment
         li.appendChild(a);
         navFragment.appendChild(li);
     }
 
+    // Appending the final navbar
     navBar.appendChild(navFragment);
 
     // Removing the event listener after the navbar has been built
@@ -85,8 +86,10 @@ function changeActive() {
         // Otherwise we remove it
         if (inViewport(sections[i])) {
             sections[i].classList.add('your-active-class');
+            navBar.childNodes[i].classList.add('active-nav');
         } else {
             sections[i].classList.remove('your-active-class');
+            navBar.childNodes[i].classList.remove('active-nav');
         }
     }
 }
@@ -120,4 +123,4 @@ window.addEventListener('DOMContentLoaded', navBarBuild);
 window.addEventListener('scroll', () => { scrollFunction(); changeActive(); });
 
 // Listening for clicks on the scroll button
-scrollButton.addEventListener('click', () => { scrollToTop() })
+scrollButton.addEventListener('click', scrollToTop);
