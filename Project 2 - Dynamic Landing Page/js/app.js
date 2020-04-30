@@ -31,7 +31,11 @@ let scrollButton = document.getElementById('scrollButton');
 
 // Function to check if a section is in the viewport
 function inViewport(elem) {
+
+    // Get the size on the element and its position relative to the viewport
     let bounding = elem.getBoundingClientRect();
+
+    // Return true if the section is in the viewport.
     return (
         bounding.top >= 0 &&
         bounding.left >= 0 &&
@@ -65,25 +69,23 @@ function navBarBuild() {
         a.classList.add('menu__link');
 
         // Append the a to the li and then the li to the fragment
-        li.appendChild(a);
-        navFragment.appendChild(li);
+        navFragment.appendChild(li).appendChild(a);
     }
 
-    // Appending the final navbar
+    // Appending the final navbar to the fragment
     navBar.appendChild(navFragment);
 
     // Removing the event listener after the navbar has been built
     window.removeEventListener('DOMContentLoaded', navBarBuild);
 }
 
-// Add class 'active' to section when near top of viewport
+// Add class 'active' to section and navigation when near top of viewport
 function changeActive() {
 
     // Find the active section.
     for (let i = 0; i < sections.length; i++) {
 
-        // If the section is in the viewport we change the state to active
-        // Otherwise we remove it
+        // If the section is in the viewport we change the state to active. Otherwise we remove it
         if (inViewport(sections[i])) {
             sections[i].classList.add('your-active-class');
             navBar.childNodes[i].classList.add('active-nav');
@@ -119,7 +121,7 @@ function scrollFunction() {
 // Build the navigation bar when the DOM content is loaded
 window.addEventListener('DOMContentLoaded', navBarBuild);
 
-// Event listener for scroll which fires the scroll button and active state functions
+// Event listener for scroll which fires the scroll button and active state function
 window.addEventListener('scroll', () => { scrollFunction(); changeActive(); });
 
 // Listening for clicks on the scroll button
