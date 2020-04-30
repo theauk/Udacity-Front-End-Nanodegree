@@ -11,8 +11,8 @@
 
 /* ---- Base Rules ---- */
 body {
-    background: rgb(136,203,171);
-    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
+    background: rgb(167, 136, 203);
+    background: linear-gradient(0deg, rgba(167, 136, 203, 1) 0%, rgba(0,13,60,1) 100%);
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #fff;
@@ -59,10 +59,30 @@ section {
     min-height: 80vh;
 }
 
+#scrollButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    z-index: 99;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: grey;
+    color: white;
+}
+
 
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+.navbar__menu {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
