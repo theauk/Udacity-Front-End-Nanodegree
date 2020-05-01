@@ -37,8 +37,8 @@ function inViewport(elem) {
 
     // Return true if the section is in the viewport.
     return (
-        bounding.top >= 0 &&
         bounding.left >= 0 &&
+        bounding.top >= 0 &&
         bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
     );
