@@ -26,12 +26,12 @@ const port = 8000;
 const server = app.listen(port, listening);
 
 function listening() {
-    console.log(`running on localhost: ${port}`);
+    console.log(`Running on localhost: ${port}`);
 };
 
 // Get request
 app.get('/get', (request, response) => {
-    console.log('Server is sending: ' + projectData);
+    console.log('Server get function called');
     response.send(projectData);
 });
 
@@ -40,6 +40,6 @@ app.post('/post', (request, response) => {
     projectData['temperature'] = request.body.temperature;
     projectData['date'] = request.body.date;
     projectData['userResponse'] = request.body.userResponse;
-    console.log('Posted to server: ' + projectData);
+    console.log('Server post function called');
     response.send(projectData);
 })
