@@ -1,23 +1,39 @@
-var path = require('path')
-const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
+var AYLIENTextAPI = require('aylien_textapi');
 
 const app = express()
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.static('dist'));
 
-app.use(express.static('dist'))
+// Load .env file
+const dotenv = require('dotenv');
+dotenv.config();
 
-console.log(__dirname)
+// Aylien credentials
+var textapi = new aylien({
+    application_id: process.env.API_ID,
+    application_key: process.env.API_KEY
+});
+
+// Port
+const port = 8080;
+app.listen(port, function () {
+    console.log(`Listening on port: ${port}`);
+})
 
 app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile('dist/index.html');
 })
 
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
-})
+// Get the sentiment analysis
+app.get('/sentiment', getAnalysis);
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
+function getAnalysis(req, res) {
+    
+    const url = req.body.url;
+}

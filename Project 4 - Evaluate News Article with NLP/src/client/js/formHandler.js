@@ -1,16 +1,27 @@
 function handleSubmit(event) {
     event.preventDefault()
 
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    checkForName(formText)
+    // Check for correct URL
+    let formText = document.getElementById('url').value
+    let url = client.correctURL(formText)
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })
+    if (url) {
+        console.log('Submitted URL:', url);
+
+        fetch('/sentiment', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({text: url})
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('polarity').innerHTML = data.polarity;
+            // ETC.
+        });
+    }
 }
 
 export { handleSubmit }
