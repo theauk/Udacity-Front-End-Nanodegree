@@ -2,6 +2,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-color: rgb(211, 211, 211);
 }
 
 main {
@@ -9,6 +12,10 @@ main {
 }
 
 section {
-    max-width: 800px;
-    margin: 50px auto;
+    margin: auto;
+}
+
+.formResultsTitle {
+    font-weight: bold;       
+    font-size: 1.5em;
 }

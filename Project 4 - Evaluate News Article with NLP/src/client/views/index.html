@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-        <link rel="stylesheet" href="/styles/resets.scss">
-        <link rel="stylesheet" href="/styles/base.scss">
-        <link rel="stylesheet" href="/styles/header.scss">
-        <link rel="stylesheet" href="/styles/form.scss">
-        <link rel="stylesheet" href="/styles/footer.scss">
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>Analyze Article</title>
+</head>
 
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
+<body>
 
-        <main>
-            <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
+    <header>
+        <div class="title">
+            <p>Analyze Article</p>
+        </div>
+        <div class="subTitle">
+            <p>with Natural Language Processing</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <form class="form" onsubmit="return Client.handleSubmit(event)">
+                <input id="url" type="text" name="input" value="" placeholder="Submit a URL">
+                <input class="submitButton" type="submit" name="" value="Submit"
+                    onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+            </form>
             <section>
 
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
-        </main>
+                <section>
+                    <div>
+                        <p class="formResultsTitle">Form Results</p>
+                    </div>
+                    <div id="results">
 
-        <footer>
-            <p>This is a footer</p>
-        </footer>
+                        <div id="submittedURL">
+                        </div>
+                        <div id="polarity">
+                        </div>
+                        <div id="polarityConfidence">
+                        </div>
+                        <div id="subjectivity">
+                        </div>
+                        <div id="subjectivityConfidence">
+                        </div>
 
-    </body>
+                    </div>
+                </section>
+    </main>
+
+    <footer>
+        <p>Analysis data from <a href="https://docs.aylien.com/" target="_blank">Aylien API</a></p>
+    </footer>
+
+</body>
+
 </html>

@@ -1,14 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
-var AYLIENTextAPI = require('aylien_textapi');
+var path = require('path');
+var aylien = require("aylien_textapi");
 
 const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static('dist'));
+
+// 'src/client'
+//app.use(express.static('dist'));
+app.use(express.static('src/client'));
 
 // Load .env file
 const dotenv = require('dotenv');
@@ -21,19 +24,33 @@ var textapi = new aylien({
 });
 
 // Port
-const port = 8080;
+const port = 8081;
 app.listen(port, function () {
     console.log(`Listening on port: ${port}`);
 })
 
 app.get('/', function (req, res) {
-    res.sendFile('dist/index.html');
+    res.sendFile('dist/index.html')
+    // res.sendFile('/client/views/index.html', {root: __dirname + '/..'})
+    //res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
-// Get the sentiment analysis
-app.get('/sentiment', getAnalysis);
+app.post('/sentiment', async (req, res) => {
 
-function getAnalysis(req, res) {
-    
-    const url = req.body.url;
-}
+    console.log("Running server post function")
+
+    try {
+        var analysisData = textapi.sentiment({
+            'text': req.body.url
+        }, function (error, response) {
+            if (error === null) {
+                console.log("Response from API: ", response);
+                res.send(response);
+            }
+        });
+
+    } catch (error) {
+
+        console.log("Error in server post function")
+    }
+})
