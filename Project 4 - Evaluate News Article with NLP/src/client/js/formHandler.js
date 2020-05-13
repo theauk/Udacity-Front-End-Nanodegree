@@ -19,7 +19,7 @@ function handleSubmit(event) {
             .then(res => res.json())
 
             .then(data => {
-                document.getElementById('submittedURL').innerHTML = data.text;
+                document.getElementById('submittedURL').innerHTML = userURL;
                 document.getElementById('polarity').innerHTML = data.polarity.charAt(0).toUpperCase() + data.polarity.slice(1);
                 document.getElementById('polarityConfidence').innerHTML = (data.polarity_confidence * 100).toFixed(2) + "%";
                 document.getElementById('subjectivity').innerHTML = data.subjectivity.charAt(0).toUpperCase() + data.subjectivity.slice(1);
@@ -27,6 +27,17 @@ function handleSubmit(event) {
             });
 
     } else {
+
+        // Clear the last results
+        if (document.getElementById('submittedURL').innerHTML != "") {
+            console.log("HERE")
+            document.getElementById('submittedURL').innerHTML = "";
+            document.getElementById('polarity').innerHTML = "";
+            document.getElementById('polarityConfidence').innerHTML = "";
+            document.getElementById('subjectivity').innerHTML = "";
+            document.getElementById('subjectivityConfidence').innerHTML = "";
+        }
+
         console.log('Invalid URL');
         alert('Please enter a valid URL')
     }

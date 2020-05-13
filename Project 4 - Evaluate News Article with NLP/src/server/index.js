@@ -31,8 +31,6 @@ app.listen(port, function () {
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
-    // res.sendFile('/client/views/index.html', {root: __dirname + '/..'})
-    //res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 app.post('/sentiment', async (req, res) => {
@@ -41,7 +39,7 @@ app.post('/sentiment', async (req, res) => {
 
     try {
         var analysisData = textapi.sentiment({
-            'text': req.body.url
+            'url': req.body.url
         }, function (error, response) {
             if (error === null) {
                 console.log("Response from API: ", response);
