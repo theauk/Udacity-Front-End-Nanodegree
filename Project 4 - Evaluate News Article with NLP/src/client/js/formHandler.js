@@ -18,12 +18,12 @@ function handleSubmit(event) {
         })
             .then(res => res.json())
 
-            .then(function (data) {
-                document.getElementById('polarity').innerText = data.polarity;
-                document.getElementById('subjtectivity').innerText = data.subjectivity;
+            .then(data => {
                 document.getElementById('submittedURL').innerHTML = data.text;
-                document.getElementById('polarityConfidence').innerHTML = data.polarity_confidence;
-                document.getElementById('subjectivityConfidence').innerHTML = data.subjectivity_confidence;
+                document.getElementById('polarity').innerHTML = data.polarity.charAt(0).toUpperCase() + data.polarity.slice(1);
+                document.getElementById('polarityConfidence').innerHTML = (data.polarity_confidence * 100).toFixed(2) + "%";
+                document.getElementById('subjectivity').innerHTML = data.subjectivity.charAt(0).toUpperCase() + data.subjectivity.slice(1);
+                document.getElementById('subjectivityConfidence').innerHTML = (data.subjectivity_confidence * 100).toFixed(2) + "%";
             });
 
     } else {

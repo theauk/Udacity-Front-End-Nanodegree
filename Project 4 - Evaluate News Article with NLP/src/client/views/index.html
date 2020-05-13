@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Analyze Article</title>
+    <title>Analyze News Article</title>
 </head>
 
 <body>
 
     <header>
         <div class="title">
-            <p>Analyze Article</p>
+            <p>Analyze News Article</p>
         </div>
         <div class="subTitle">
             <p>with Natural Language Processing</p>
@@ -31,24 +31,32 @@
                         <p class="formResultsTitle">Form Results</p>
                     </div>
                     <div id="results">
-
-                        <div id="submittedURL">
+                        <div class="resultsTile">
+                            <p>Submitted URL</p>
+                            <div class="resultText" id="submittedURL"></div>
                         </div>
-                        <div id="polarity">
+                        <div class="resultsTile">
+                            <p>Polarity</p>
+                            <div class="resultText" id="polarity"></div>
                         </div>
-                        <div id="polarityConfidence">
+                        <div class="resultsTile">
+                            <p>Polarity Confidence</p>
+                            <div class="resultText" id="polarityConfidence"></div>
                         </div>
-                        <div id="subjectivity">
+                        <div class="resultsTile">
+                            <p>Subjectivity</p>
+                            <div class="resultText" id="subjectivity"></div>
                         </div>
-                        <div id="subjectivityConfidence">
+                        <div class="resultsTile">
+                            <p>Subjectivity Confidence</p>
+                            <div class="resultText" id="subjectivityConfidence"></div>
                         </div>
-
                     </div>
                 </section>
     </main>
 
     <footer>
-        <p>Analysis data from <a href="https://docs.aylien.com/" target="_blank">Aylien API</a></p>
+        <p>Data from <a href="https://docs.aylien.com/" target="_blank">Aylien API</a></p>
     </footer>
 
 </body>

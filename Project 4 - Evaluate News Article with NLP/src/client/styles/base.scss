@@ -17,5 +17,24 @@ section {
 
 .formResultsTitle {
     font-weight: bold;       
-    font-size: 1.5em;
+    font-size: 1.7em;
+}
+
+#results {
+    text-align: center;
+}
+
+.resultsTile {
+    margin-top: 20px;
+
+    p {
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+}
+
+.resultText {
+    margin-top: 10px;
+    color: rgb(102, 27, 27);
+    font-size: 1.2em;
 }
