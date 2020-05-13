@@ -42,7 +42,7 @@ app.post('/sentiment', async (req, res) => {
             'url': req.body.url
         }, function (error, response) {
             if (error === null) {
-                console.log("Response from API: ", response);
+                console.log("Response from API received");
                 res.send(response);
             }
         });
