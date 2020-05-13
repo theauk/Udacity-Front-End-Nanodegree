@@ -26,3 +26,6 @@ Web app that allows users to run Natural Language Processing (NLP) on articles o
 ## Production Environment
 - In the terminal run `npm run start`.
 - In another terminal run `npm run build-prod`.
+
+## Testing
+- Run `npm run test`.
