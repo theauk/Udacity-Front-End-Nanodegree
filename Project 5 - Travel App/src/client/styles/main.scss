@@ -1,7 +1,6 @@
 body {
     padding: 0px;
     margin: 0px;
-    font-family: sans-seirf;
 }
 
 .gridContainer {
@@ -35,7 +34,7 @@ header {
     padding: 0 10% 5% 10%;
 
     h2 {
-        margin-top: 50px;
+        margin-top: 30px;
     }
 }
 
@@ -62,7 +61,7 @@ form {
     }
 }
 
-.submitButton {
+#submitButton {
     width: 50%;
     padding: 20px;
     align-self: center;

@@ -22,29 +22,34 @@
         <input id="arrivalDate" type="date" name="input" value="" placeholder="Arrival date">
         <label for="departureDate">Departure Date</label>
         <input id="departureDate" type="date" name="input" value="" placeholder="Departure date">
-        <input class="submitButton" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)"
-          onsubmit="return Client.handleSubmit(event)">
+        <input id="submitButton" type="submit" name="" value="Submit">
       </form>
     </section>
 
     <section class="result">
       <div class="resultInfo">
         <img id="resultImg" src="../img/map.jpg">
-        <h3 id="locationName">Location</h3>
-        <p id="countDown">x days away</p>
+        <div class="resultHeader">
+          <h3 id="locationName">Location</h3>
+          <p id="length">y day trip</p>
+          <p id="countDown">x days away</p>
+        </div>
         <div class="details">
-          <p id="arrivalResult"><strong>Arrival</strong> 05/20/2020</p>
-          <p id="departureResult"><strong>Departure</strong> 05/29/2020</p>
+          <p id="arrivalTitle">Arrival</p>
+          <p id="departureTitle">Departure</p>
+          <p id="arrivalResult">05/03/2020</p>
+          <p id="departureResult">20/05/2020</p>
         </div>
         <div class="weather">
-          <p id="weatherTitle"><strong>Typical Weather</strong></p>
+          <p id="weatherTitle">Typical Weather</p>
           <p id="weatherDetails">Weather weather weather weather</p>
         </div>
         <div class="submitButtons">
-          <input class="submitButtonResult" type="submit" name="" value="Save"
-            onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-          <input class="submitButtonResult" type="submit" name="" value="Remove"
-            onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+          <input class="submitButtonResult" id="save" type="submit" name="" value="Save">
+          <input class="submitButtonResult" id="remove" type="submit" name="" value="Remove">
+        </div>
+        <div class="newSearch">
+          <input id="newSearchButton" type="submit" name="" value="New Search">
         </div>
       </div>
     </section>

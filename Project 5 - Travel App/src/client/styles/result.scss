@@ -1,6 +1,6 @@
 .resultInfo {
     background-color: rgb(152, 135, 197);
-    margin: 15px 10% 15px 10%;
+    margin: 35px 5% 15px 5%;
     border-radius: 25px;
 }
 
@@ -9,15 +9,28 @@
     border-radius: 25px 25px 0 0;
 }
 
+.resultHeader {
+    background-color: rgb(110, 69, 192);
+    padding: 10px 0 10px 0;
+    margin-top: -5px;
+}
+
 #locationName {
     text-align: center;
     font-size: 1.5em;
-    margin-block-start: 1em;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+#length {
+    font-size: 1.1em;
+    text-align: center;
+    margin-block-start: 0;
     margin-block-end: 0;
 }
 
 #countDown {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-style: italic;
     text-align: center;
     margin-block-start: 0;
@@ -29,10 +42,35 @@
     grid-template-columns: 1fr 1fr;
     text-align: center;
     font-size: 1em;
+
+    p {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+    }
+}
+
+#arrivalTitle,
+#departureTitle {
+    font-weight: bold;
+    margin: 15px 0 5px 0;
 }
 
 .weather {
     text-align: center;
+
+    p {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+    }
+}
+
+#weatherTitle {
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+}
+
+#weatherDetails {
+    margin-bottom: 15px;
 }
 
 .submitButtons {
@@ -50,4 +88,21 @@
     color: white;
     border-radius: 25px;
     font-size: 1em;
+}
+
+.newSearch {
+    text-align: center;
+}
+
+#newSearchButton {
+    margin: 10px;
+    width: 45%;
+    padding: 8px;
+    align-self: center;
+    background-color: rgb(110, 69, 192);
+    border-color: rgb(67, 24, 152);
+    font-size: 0.8em;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
