@@ -5,10 +5,68 @@
   <meta charset="utf-8" />
   <title>Travel App</title>
   <meta name="description" content="A travel application" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-  <img id="headerImage">
-  <p>Text</p>
+  <div class="gridContainer">
+    <header>
+      <h1 id="headerTitle">Travel Planner</h1>
+    </header>
+
+    <section class="addTrip">
+      <h2>Add Trip</h2>
+      <form class="form" onsubmit="return Client.handleSubmit(event)">
+        <input id="where" type="text" name="input" value="" placeholder="Destination">
+        <label for="arrivalDate">Arrival Date</label>
+        <input id="arrivalDate" type="date" name="input" value="" placeholder="Arrival date">
+        <label for="departureDate">Departure Date</label>
+        <input id="departureDate" type="date" name="input" value="" placeholder="Departure date">
+        <input class="submitButton" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)"
+          onsubmit="return Client.handleSubmit(event)">
+      </form>
+    </section>
+
+    <section class="result">
+      <div class="resultInfo">
+        <img id="resultImg" src="../img/map.jpg">
+        <h3 id="locationName">Location</h3>
+        <p id="countDown">x days away</p>
+        <div class="details">
+          <p id="arrivalResult"><strong>Arrival</strong> 05/20/2020</p>
+          <p id="departureResult"><strong>Departure</strong> 05/29/2020</p>
+        </div>
+        <div class="weather">
+          <p id="weatherTitle"><strong>Typical Weather</strong></p>
+          <p id="weatherDetails">Weather weather weather weather</p>
+        </div>
+        <div class="submitButtons">
+          <input class="submitButtonResult" type="submit" name="" value="Save"
+            onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+          <input class="submitButtonResult" type="submit" name="" value="Remove"
+            onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+        </div>
+      </div>
+    </section>
+
+    <section class="myTrips">
+      <h2>My Trips</h2>
+      <div class="tripTiles">
+        <div class="trip" id="trip1">
+          <img class="tripImg" id="tripImg1" src="../img/map.jpg">
+          <h3 class="tripTitle">Trip 1</h3>
+        </div>
+        <div class="trip" id="trip2">
+          <img class="tripImg" id="tripImg2" src="../img/map.jpg">
+          <h3 class="tripTitle">Trip 2</h3>
+        </div>
+        <div class="trip" id="trip3">
+          <img class="tripImg" id="tripImg3" src="../img/map.jpg">
+          <h3 class="tripTitle">Trip 3</h3>
+        </div>
+      </div>
+    </section>
+  </div>
 </body>
 
 </html>

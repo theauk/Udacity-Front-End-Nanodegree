@@ -6,8 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
     entry: './src/client/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        //filename: 'bundle.js',
+        //path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'var',
         library: 'Client'
     },
@@ -26,12 +26,16 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(png|jpg)$/,
+                test: /\.html$/,
+                use: ['html-loader']
+            },
+            {
+                test: /\.(png|svg|jpg|JPEG|gif)$/,
                 use: {
                     loader: 'url-loader',
                     options: {
                         limit: 8000, // Convert images < 8kb to base64 strings
-                        name: 'images/[hash]-[name].[ext]'
+                        name: 'img/[name].[ext]'
                     },
                 },
             },

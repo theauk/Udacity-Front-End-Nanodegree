@@ -1,0 +1,23 @@
+.tripTiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.tripImg {
+    width: 100%;
+    border-radius: 25px 25px 0 0;
+}
+
+.trip {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(117, 73, 205);
+    margin: 15px 10% 15px 10%;
+    border-radius: 25px;
+}
+
+.tripTitle {
+    text-align: center;
+    font-size: 1em;
+}

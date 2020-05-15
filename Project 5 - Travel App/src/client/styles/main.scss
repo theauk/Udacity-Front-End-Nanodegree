@@ -4,6 +4,69 @@ body {
     font-family: sans-seirf;
 }
 
-#headerImage {
-    max-width: 100%;
+.gridContainer {
+    display: grid;
+}
+
+section {
+    margin: 0 10% 0 10%;
+}
+
+header {
+    background-color: rgb(67, 24, 152);
+    h1 {
+        text-align: center;
+        letter-spacing: 2px;
+        font-size: 2em;
+        margin-top: 50px;
+        color: white;
+    }
+}
+
+.addTrip,
+.myTrips {
+    h2 {
+        font-size: 1.5em;
+        text-align: center;
+    }
+}
+
+.addTrip {
+    padding: 0 10% 5% 10%;
+
+    h2 {
+        margin-top: 50px;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    input {
+        align-self: center;
+        line-height: 16px;
+        width: 100%;
+        margin: 0 0 25px 0;
+        padding: 10px;
+        font-size: 1.1em;
+        border: 1px solid grey;
+        font-family: sans-seirf;
+    }
+
+    label {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+}
+
+.submitButton {
+    width: 50%;
+    padding: 20px;
+    align-self: center;
+    background-color: rgb(67, 24, 152);
+    color: white;
+    border-radius: 25px;
 }
