@@ -4,3 +4,9 @@ import "./styles/tripTiles.scss";
 import "./styles/result.scss";
 
 import { eventListening } from "./js/app";
+import { tripSubmit } from "./js/tripSubmit";
+
+export {
+    eventListening,
+    tripSubmit
+}

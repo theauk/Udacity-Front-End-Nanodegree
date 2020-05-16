@@ -16,12 +16,12 @@
 
     <section class="addTrip">
       <h2>Add Trip</h2>
-      <form class="form" onsubmit="return Client.handleSubmit(event)">
-        <input id="where" type="text" name="input" value="" placeholder="Destination">
+      <form class="form">
+        <input id="where" type="text" name="input" value="" placeholder="Destination" required>
         <label for="arrivalDate">Arrival Date</label>
-        <input id="arrivalDate" type="date" name="input" value="" placeholder="Arrival date">
+        <input id="arrivalDate" type="date" name="input" value="" placeholder="Arrival date" required>
         <label for="departureDate">Departure Date</label>
-        <input id="departureDate" type="date" name="input" value="" placeholder="Departure date">
+        <input id="departureDate" type="date" name="input" value="" placeholder="Departure date" required>
         <input id="submitButton" type="submit" name="" value="Submit">
       </form>
     </section>

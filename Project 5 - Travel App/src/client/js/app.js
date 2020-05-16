@@ -3,10 +3,10 @@ function eventListening() {
     // Listen for the submit button
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", () => {
-        console.log("HEY")
+        console.log("Submit button clicked")
         Client.tripSubmit(event);
     });
-
+/*
     // Listen for the save button
     const saveButton = document.getElementById("save");
     saveButton.addEventListener("click", () => {
@@ -22,7 +22,7 @@ function eventListening() {
     const newSearchButton = document.getElementById("newSearchButton");
     newSearchButton.addEventListener("click", () => {
         Client.newSearch(event);
-    });
+    });*/
 }
 
 eventListening();
