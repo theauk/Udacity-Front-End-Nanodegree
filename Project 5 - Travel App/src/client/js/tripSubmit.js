@@ -23,12 +23,20 @@ function tripSubmit(event) {
             .then(res => res.json())
 
             .then(data => {
-                alert("End of client fetch", data)
+                
+                console.log("Response from Geonames fetch", data);
+
+                // Check for valid destination
+                if (data.error == "invalid destination") {
+                    alert("Please enter a valid destination")
+                } else {
+                    alert("End of client fetch", data)
+                }
             })
             .catch(err => alert(err))
 
     } else {
-        // Error messages
+        // Error messages for empty input fields
         if (location == "") {
             alert("Please enter a location")
             console.log("Empty location")
