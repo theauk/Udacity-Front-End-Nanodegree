@@ -47,6 +47,12 @@ const datedif = (day1, day2) => {
 
 }
 
+// Function to convert C to F
+const convertTemp = (tempC) => {
+    let tempF = tempC * 9 / 5 + 32;
+    return tempF
+}
+
 // Async fetch function that makes a GET request to the Geonames API
 const getCoordinates = async (destination) => {
 
@@ -78,12 +84,6 @@ const getCoordinates = async (destination) => {
     } catch (error) {
         console.log("error:", error)
     }
-}
-
-// Function to convert C to F
-const convertTemp = (tempC) => {
-    let tempF = tempC * 9 / 5 + 32;
-    return tempF
 }
 
 // Async function to get weather deatils
