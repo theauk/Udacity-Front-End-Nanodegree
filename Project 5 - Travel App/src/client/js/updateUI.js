@@ -13,7 +13,7 @@ function updateUI(data) {
     document.getElementById("countDown").innerHTML = `${data.countDown.dateDifference} ${data.countDown.dayWord} away`;
     document.getElementById("arrivalResult").innerHTML = data.arrivalDate;
     document.getElementById("departureResult").innerHTML = data.departureDate;
-    document.getElementById("weatherDetails").innerHTML = `High: ${data.tripWeather.maxTemp}°C <br> Low: ${data.tripWeather.minTemp}°C`;
+    document.getElementById("weatherDetails").innerHTML = `High: ${data.tripWeather.maxTemp}°C / ${data.tripWeather.maxTempF} °F <br> Low: ${data.tripWeather.minTemp}°C / ${data.tripWeather.minTempF} °F`;
 }
 
 export { updateUI }

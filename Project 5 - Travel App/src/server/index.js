@@ -25,6 +25,11 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 });
 
+// For testing the server
+app.get('/test', function (req, res) {
+    res.send({'message':'Working'})
+});
+
 // Function to find the number of days between two specific days
 const datedif = (day1, day2) => {
 
@@ -38,7 +43,7 @@ const datedif = (day1, day2) => {
         dayWord = "day";
     }
 
-    return {dateDifference: dateDifference, dayWord: dayWord}
+    return { dateDifference: dateDifference, dayWord: dayWord }
 
 }
 
@@ -75,6 +80,12 @@ const getCoordinates = async (destination) => {
     }
 }
 
+// Function to convert C to F
+const convertTemp = (tempC) => {
+    let tempF = tempC * 9 / 5 + 32;
+    return tempF
+}
+
 // Async function to get weather deatils
 const getWeather = async (data, coordinates) => {
 
@@ -87,7 +98,7 @@ const getWeather = async (data, coordinates) => {
     const key = process.env.weatherbitKey;
 
     // Get forecast if arrival date is less than 17 days away 
-    if (dateDif < 17) {
+    if (dateDif < 17 && dateDif >= 0) {
         const fetchURL = `${baseUrl}forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lng}&key=${key}`;
         console.log("Fetch weather URL (forecast):", fetchURL)
 
@@ -102,7 +113,9 @@ const getWeather = async (data, coordinates) => {
                     const weatherArray = responseJSON.data[i];
                     const weatherJSON = {
                         maxTemp: weatherArray.max_temp,
-                        minTemp: weatherArray.min_temp
+                        minTemp: weatherArray.min_temp,
+                        maxTempF: convertTemp(weatherArray.max_temp),
+                        minTempF: convertTemp(weatherArray.min_temp)
                     }
 
                     console.log("Weatherbit response temp (forecast):", weatherJSON);
@@ -125,6 +138,7 @@ const getWeather = async (data, coordinates) => {
         const startDate = new Date(yearTime)
 
         // Find the day after
+        const oneDay = 1000 * 60 * 60 * 24;
         const endDateTime = Math.round((startDate.getTime() + oneDay));
         const endDate = new Date(endDateTime)
 
@@ -143,7 +157,9 @@ const getWeather = async (data, coordinates) => {
             const weatherArray = responseJSON.data;
             const weatherJSON = {
                 maxTemp: weatherArray[0].max_temp,
-                minTemp: weatherArray[0].min_temp
+                minTemp: weatherArray[0].min_temp,
+                maxTempF: convertTemp(weatherArray[0].max_temp),
+                minTempF: convertTemp(weatherArray[0].min_temp)
             }
 
             console.log("Weatherbit response temp (historical):", weatherJSON);
@@ -218,11 +234,12 @@ app.post('/submitForm', async (req, res) => {
 
         // Get the countdown
         const countD = datedif(new Date(), new Date(response.arrivalDate));
+        countD.dateDifference += 1;
 
         // Get the trip length (add one to account for the day itself)
         let tripLen = datedif(new Date(response.arrivalDate), new Date(response.departureDate));
         tripLen.dateDifference += 1;
-        
+
         // Get image
         const image = await pixabay(response.destination, coordinates.country)
 
@@ -242,4 +259,6 @@ app.post('/submitForm', async (req, res) => {
         res.send(data)
     }
 
-})
+});
+
+module.exports = app;
