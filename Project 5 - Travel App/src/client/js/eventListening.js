@@ -14,7 +14,6 @@ function eventListening() {
         Client.newSearch();
     });
 
-/*
     // Listen for the save button
     const saveButton = document.getElementById("save");
     saveButton.addEventListener("click", () => {
@@ -26,7 +25,6 @@ function eventListening() {
     removeButton.addEventListener("click", () => {
         Client.removeTrip(event);
     });
-    */
 }
 
 eventListening();

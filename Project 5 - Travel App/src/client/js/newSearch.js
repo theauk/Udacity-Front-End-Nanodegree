@@ -6,8 +6,13 @@ function newSearch() {
     document.getElementById("departureDate").value = "";
 
     // Show the search section
-    document.getElementById("addTrip").style.display = "block";
     document.getElementById("result").style.display = "none";
+    document.getElementById("addTrip").style.display = "block";
+    document.getElementById("myTrips").style.display = "block";
+
+    // Show save button again
+    document.getElementById("save").style.display = "";
+
 }
 
 export { newSearch }

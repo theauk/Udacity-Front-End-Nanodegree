@@ -30,6 +30,25 @@ app.get('/test', function (req, res) {
     res.send({'message':'Working'})
 });
 
+// Array to store the data
+let userData = {};
+
+// For click saved trips
+app.post('/savedTrip', function (req, res) {
+    const element = userData[req.body.trip]
+    console.log(userData, req.body.trip, element)
+    res.send(element);
+});
+
+// For saving a trip
+app.post('/save', function (req, res) {
+    userData[`${req.body.location} + ${req.body.arrival} + ${req.body.departure}`] = req.body;
+    console.log("Trip is saved and user data is now:", userData)
+    res.sendStatus(200);
+});
+
+// For deleting a trip
+
 // Function to find the number of days between two specific days
 const datedif = (day1, day2) => {
 
@@ -49,7 +68,7 @@ const datedif = (day1, day2) => {
 
 // Function to convert C to F
 const convertTemp = (tempC) => {
-    let tempF = tempC * 9 / 5 + 32;
+    let tempF = Math.round(tempC * 9 / 5 + 32);
     return tempF
 }
 
@@ -112,8 +131,8 @@ const getWeather = async (data, coordinates) => {
                 if (responseJSON.data[i].valid_date == data.arrivalDate) {
                     const weatherArray = responseJSON.data[i];
                     const weatherJSON = {
-                        maxTemp: weatherArray.max_temp,
-                        minTemp: weatherArray.min_temp,
+                        maxTemp: Math.round(weatherArray.max_temp),
+                        minTemp: Math.round(weatherArray.min_temp),
                         maxTempF: convertTemp(weatherArray.max_temp),
                         minTempF: convertTemp(weatherArray.min_temp)
                     }
@@ -234,7 +253,7 @@ app.post('/submitForm', async (req, res) => {
 
         // Get the countdown
         const countD = datedif(new Date(), new Date(response.arrivalDate));
-        countD.dateDifference += 1;
+        //countD.dateDifference += 1;
 
         // Get the trip length (add one to account for the day itself)
         let tripLen = datedif(new Date(response.arrivalDate), new Date(response.departureDate));
@@ -245,7 +264,7 @@ app.post('/submitForm', async (req, res) => {
 
         const data = {
             // Upper-case first letter
-            destination: response.destination.charAt(0).toUpperCase() + response.destination.slice(1),
+            location: response.destination.charAt(0).toUpperCase() + response.destination.slice(1),
             country: coordinates.country,
             arrivalDate: response.arrivalDate,
             departureDate: response.departureDate,
