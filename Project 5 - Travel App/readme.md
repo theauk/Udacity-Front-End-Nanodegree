@@ -1,10 +1,10 @@
 # Travel Web Application
-Web app that allows users to plan trips. After inputting the destination and travel dates, the user is provided with the length of their trip, a countdown, a weather forecast, and an image of their destination. 
+Web app that allows a users to plan a trip. After inputting the destination and travel dates, the user is provided with the length of the trip, a countdown, a weather forecast, and an image of their destination. 
 
-The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates for the destination which are then used to get the weather forecast from the [Weatherbit API](https://www.weatherbit.io/). If the trip is less than 16 days away, a forecast is provided. For trips further away, historical data is used to predict the weather. Lastly, the [Pixabay API](https://pixabay.com/) is used to get the destination image.
+The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates for the destination, which are then used to get the weather forecast from the [Weatherbit API](https://www.weatherbit.io/). If the trip is less than 16 days away, a forecast is provided. For trips further away, historical data is used to predict the weather. Lastly, the [Pixabay API](https://pixabay.com/) is used to get the destination image.
 
 ### Extras
-- The user can add an end date and the length of trip is displayed.
+- The user can add an end date, and the length of the trip is displayed.
 - Pulls an image from the destination country if the city brings up no results.
 
 ## The Project Includes
