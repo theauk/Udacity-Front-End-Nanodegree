@@ -9,7 +9,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// 'src/client'
 app.use(express.static('dist'));
 
 // Load .env file
@@ -25,6 +24,23 @@ app.listen(port, function () {
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 });
+
+// Function to find the number of days between two specific days
+const datedif = (day1, day2) => {
+
+    // Find the difference in days
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dateDifference = Math.round((day2.getTime() - day1.getTime()) / oneDay);
+
+    // Check the days
+    let dayWord = "days"
+    if (dateDifference == 1) {
+        dayWord = "day";
+    }
+
+    return {dateDifference: dateDifference, dayWord: dayWord}
+
+}
 
 // Async fetch function that makes a GET request to the Geonames API
 const getCoordinates = async (destination) => {
@@ -47,7 +63,11 @@ const getCoordinates = async (destination) => {
         if (geonamesData == undefined) {
             return "invalid destination"
         } else {
-            return { lng: geonamesData.lng, lat: geonamesData.lat }
+            return {
+                lng: geonamesData.lng,
+                lat: geonamesData.lat,
+                country: geonamesData.countryName
+            }
         }
 
     } catch (error) {
@@ -57,18 +77,17 @@ const getCoordinates = async (destination) => {
 
 // Async function to get weather deatils
 const getWeather = async (data, coordinates) => {
+
     const arrival = new Date(data.arrivalDate);
     const today = new Date();
-
-    // Find the difference in days
-    const oneDay = 1000 * 60 * 60 * 24;
-    const dateDifference = Math.round((arrival.getTime() - today.getTime()) / oneDay);
+    const dateDif = datedif(today, arrival).dateDifference;
+    console.log("Difference between today and arrival:", dateDif);
 
     const baseUrl = "http://api.weatherbit.io/v2.0/";
     const key = process.env.weatherbitKey;
 
     // Get forecast if arrival date is less than 17 days away 
-    if (dateDifference < 17) {
+    if (dateDif < 17) {
         const fetchURL = `${baseUrl}forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lng}&key=${key}`;
         console.log("Fetch weather URL (forecast):", fetchURL)
 
@@ -105,13 +124,14 @@ const getWeather = async (data, coordinates) => {
         const yearTime = Math.round((arrival.getTime() - year));
         const startDate = new Date(yearTime)
 
+        // Find the day after
         const endDateTime = Math.round((startDate.getTime() + oneDay));
         const endDate = new Date(endDateTime)
 
-        console.log("Historical dates non-string", startDate, endDate)
+        // Turn them into strings for the API
         const startDateString = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
         const endDateString = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`;
-        console.log("Historical dates string:", startDateString, endDateString);
+        console.log("Historical dates (string):", startDateString, endDateString);
 
         const fetchURL = `${baseUrl}history/daily?lat=${coordinates.lat}&lon=${coordinates.lng}&start_date=${startDateString}&end_date=${endDateString}&key=${key}`;
         console.log("Fetch weather URL (historical):", fetchURL)
@@ -136,17 +156,51 @@ const getWeather = async (data, coordinates) => {
 
 };
 
-// Countdown function
-/*const countDown = (data) => {
+// Async function to get pixabay image
+const pixabay = async (city, country) => {
 
-    
+    const key = process.env.pixabayKey;
+    const baseURL = "https://pixabay.com/api/";
+    const imageType = "&image_type=photo";
+    const orientation = "&orientation=horizontal";
+    const qcity = `&q=${encodeURIComponent(city)}`
+    const qcountry = `&q=${encodeURIComponent(country)}`
+    const fetchURL = `${baseURL}?key=${key}${qcity}${imageType}${orientation}`;
+    console.log("Pixabay fetch url (city+country):", fetchURL)
 
-}*/
+    const response = await fetch(fetchURL)
+
+    try {
+        const data = await response.json();
+
+        // If there are no images from the city, we fetch only for the country
+        if (data.totalHits == 0) {
+            const newFetchURL = `${baseURL}?key=${key}${qcountry}${imageType}${orientation}`;
+            console.log("Instead -> pixabay fetch url (country):", newFetchURL)
+            const responseCountry = await fetch(newFetchURL)
+
+            try {
+                const newData = await responseCountry.json();
+                console.log("Response from pixabay:", newData.hits[0].webformatURL)
+                return newData.hits[0].webformatURL;
+
+            } catch (error) {
+                console.log("error", error)
+            }
+
+        } else {
+            console.log("Response from pixabay:", data.hits[0].webformatURL)
+            return data.hits[0].webformatURL;
+        }
+    } catch (error) {
+        console.log("error:", error)
+    }
+}
 
 app.post('/submitForm', async (req, res) => {
 
     const response = req.body
-    console.log("Running server Geonames function with req. body:", response)
+    console.log("Running submit form server function with req. body:", response)
     coordinates = await getCoordinates(response.destination);
 
     // Invalid destination
@@ -156,12 +210,36 @@ app.post('/submitForm', async (req, res) => {
 
         // Valid destination
     } else {
-        console.log("Coordinates:", coordinates)
+
+        console.log("Coordinates and country:", coordinates)
 
         // Get the weather from the coordinates
         const weather = await getWeather(response, coordinates);
 
-        res.send(coordinates)
+        // Get the countdown
+        const countD = datedif(new Date(), new Date(response.arrivalDate));
+
+        // Get the trip length (add one to account for the day itself)
+        let tripLen = datedif(new Date(response.arrivalDate), new Date(response.departureDate));
+        tripLen.dateDifference += 1;
+        
+        // Get image
+        const image = await pixabay(response.destination, coordinates.country)
+
+        const data = {
+            // Upper-case first letter
+            destination: response.destination.charAt(0).toUpperCase() + response.destination.slice(1),
+            country: coordinates.country,
+            arrivalDate: response.arrivalDate,
+            departureDate: response.departureDate,
+            tripLength: tripLen,
+            countDown: countD,
+            tripWeather: weather,
+            image: image
+        }
+
+        console.log("Data from submit form server function", data)
+        res.send(data)
     }
 
 })

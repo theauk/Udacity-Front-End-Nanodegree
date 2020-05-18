@@ -5,7 +5,10 @@ function tripSubmit(event) {
     const arrival = document.getElementById("arrivalDate").value;
     const departure = document.getElementById("departureDate").value;
 
-    if (location != "" && arrival != "" && departure != "") {
+    // Validate input
+    const validateInput = Client.validateInput(location, arrival, departure);
+
+    if (validateInput) {
 
         fetch("http://localhost:8081/submitForm", {
             method: "POST",
@@ -24,29 +27,19 @@ function tripSubmit(event) {
 
             .then(data => {
                 
-                console.log("Response from Geonames fetch", data);
+                console.log("Response from fetch", data);
 
                 // Check for valid destination
                 if (data.error == "invalid destination") {
                     alert("Please enter a valid destination")
                 } else {
-                    alert("End of client fetch", data)
+                    Client.updateUI(data);
                 }
             })
             .catch(err => alert(err))
 
     } else {
-        // Error messages for empty input fields
-        if (location == "") {
-            alert("Please enter a location")
-            console.log("Empty location")
-        } else if (arrival == "") {
-            alert("Please enter an arrival date")
-            console.log("Empty arrival date")
-        } else if (departure == "") {
-            alert("Please enter a departure date")
-            console.log("Empty departure date")
-        }
+        console.log("See input error message above")
     }
 }
 
