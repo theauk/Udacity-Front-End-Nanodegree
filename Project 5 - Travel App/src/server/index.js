@@ -33,7 +33,7 @@ app.get('/test', function (req, res) {
 // Array to store the data
 let userData = {};
 
-// For click saved trips
+// For click on a saved trips
 app.post('/savedTrip', function (req, res) {
     const element = userData[req.body.trip]
     res.send(element);
@@ -46,7 +46,12 @@ app.post('/save', function (req, res) {
     res.sendStatus(200);
 });
 
-// For deleting a trip
+// For removing a trip
+app.post('/remove', function (req, res) {
+    delete userData[req.body.id];
+    console.log("After deletion user data is now:", userData);
+    res.sendStatus(200);
+});
 
 // Function to find the number of days between two specific days
 const datedif = (day1, day2) => {

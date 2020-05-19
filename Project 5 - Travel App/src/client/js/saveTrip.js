@@ -21,8 +21,8 @@ function saveTrip() {
             {
                 location: location,
                 country: country,
-                tripLength: {dateDifference: lenDif, dayWord: lenWord},
-                countDown: {dateDifference: countDif, dayWord: countWord},
+                tripLength: { dateDifference: lenDif, dayWord: lenWord },
+                countDown: { dateDifference: countDif, dayWord: countWord },
                 arrivalDate: arrivalDate,
                 departureDate: departureDate,
                 tripWeather: weather,

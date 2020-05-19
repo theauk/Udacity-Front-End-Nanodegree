@@ -1,11 +1,15 @@
+#myTrips {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 #myTripsHeader {
     text-align: center;
 }
 
-.tripTiles {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+#tripTiles {
+    display: inline-block;
+    max-width: 600px;
 }
 
 .tripImg {
