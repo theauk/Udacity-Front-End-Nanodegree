@@ -20,7 +20,7 @@ The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates f
 
 ## Setting Up
 - Clone the repository.
-- Install all project dependencies with `npm install`.
+- Install the project dependencies with `npm install`.
 - Get credentials for the APIs.
 - Create an .env file in the root directory with your credentials in the format:
 
