@@ -1,5 +1,5 @@
 # Travel Web Application
-Web app that allows a users to plan a trip. After inputting the destination and travel dates, the user is provided with the length of the trip, a countdown, a weather forecast, and an image of their destination. 
+Web app that allows a users to plan a trip. After inputting the destination and travel dates, the user is provided with the length of the trip, a countdown, a weather forecast, and an image of their destination. The user can also save and delete trips.
 
 The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates for the destination, which are then used to get the weather forecast from the [Weatherbit API](https://www.weatherbit.io/). If the trip is less than 16 days away, a forecast is provided. For trips further away, historical data is used to predict the weather. Lastly, the [Pixabay API](https://pixabay.com/) is used to get the destination image.
 
@@ -39,17 +39,17 @@ The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates f
 - Run `npm run test`.
 
 ## How to use
-# Searching
+### Searching
 - Input a destination, arrival date, and departure date.
 - Click "submit" and the result will be displayed.
 
-# Saving and Viewing a Saved Trip
+### Saving and Viewing a Saved Trip
 - Search for a trip.
 - Click the "save" button.
 - The trip is now visible under "My Trips".
 - Click the trip card under "My Trips" to view it again.
 
-# Removing a Trip
+### Removing a Trip
 - Click a trip card under "My Trips".
 - Click the "remove" button.
 - The trip is now no longer visible under "My Trips".
