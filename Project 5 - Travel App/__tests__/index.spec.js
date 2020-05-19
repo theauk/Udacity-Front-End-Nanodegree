@@ -2,6 +2,7 @@ import 'regenerator-runtime/runtime';
 const request = require('supertest');
 const { server }  = require('../src/server/index');
 
+// For closing the server after testing
 afterAll(async () => {
     server.close();
   });
