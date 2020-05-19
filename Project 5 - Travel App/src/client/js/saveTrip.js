@@ -2,8 +2,10 @@ function saveTrip() {
 
     const location = document.getElementById("location").innerHTML;
     const country = document.getElementById("country").innerHTML;
-    const len = document.getElementById("length").innerHTML;
-    const count = document.getElementById("countDown").innerHTML;
+    const lenDif = document.getElementById("lengthNumber").innerHTML;
+    const lenWord = document.getElementById("lengthDays").innerHTML;
+    const countDif = document.getElementById("countDownNumber").innerHTML;
+    const countWord = document.getElementById("countDownDays").innerHTML;
     const arrivalDate = document.getElementById("arrivalResult").innerHTML;
     const departureDate = document.getElementById("departureResult").innerHTML;
     const weather = document.getElementById("weatherDetails").innerHTML;
@@ -19,11 +21,11 @@ function saveTrip() {
             {
                 location: location,
                 country: country,
-                length: len,
-                countDown: count,
-                arrival: arrivalDate,
-                departure: departureDate,
-                weather: weather,
+                tripLength: {dateDifference: lenDif, dayWord: lenWord},
+                countDown: {dateDifference: countDif, dayWord: countWord},
+                arrivalDate: arrivalDate,
+                departureDate: departureDate,
+                tripWeather: weather,
                 image: image
             }),
     })

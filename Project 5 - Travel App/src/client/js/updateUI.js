@@ -7,13 +7,15 @@ function updateUI(data) {
 
     // Show result information
     document.getElementById("resultImg").src = data.image;
-    document.getElementById("location").innerHTML = `${data.location}`;
-    document.getElementById("country").innerHTML = `${data.country}`;
-    document.getElementById("length").innerHTML = `Trip Length: ${data.tripLength.dateDifference} ${data.tripLength.dayWord}`;
-    document.getElementById("countDown").innerHTML = `${data.countDown.dateDifference} ${data.countDown.dayWord} away`;
+    document.getElementById("location").innerHTML = data.location;
+    document.getElementById("country").innerHTML = data.country;
+    document.getElementById("lengthNumber").innerHTML = data.tripLength.dateDifference;
+    document.getElementById("lengthDays").innerHTML = data.tripLength.dayWord;
+    document.getElementById("countDownNumber").innerHTML = data.countDown.dateDifference;
+    document.getElementById("countDownDays").innerHTML = data.countDown.dayWord;
     document.getElementById("arrivalResult").innerHTML = data.arrivalDate;
     document.getElementById("departureResult").innerHTML = data.departureDate;
-    document.getElementById("weatherDetails").innerHTML = `High: ${data.tripWeather.maxTemp}°C / ${data.tripWeather.maxTempF} °F <br> Low: ${data.tripWeather.minTemp}°C / ${data.tripWeather.minTempF} °F`;
+    document.getElementById("weatherDetails").innerHTML = data.tripWeather;
 }
 
 export { updateUI }

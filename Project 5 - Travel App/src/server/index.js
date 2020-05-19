@@ -36,13 +36,12 @@ let userData = {};
 // For click saved trips
 app.post('/savedTrip', function (req, res) {
     const element = userData[req.body.trip]
-    console.log(userData, req.body.trip, element)
     res.send(element);
 });
 
 // For saving a trip
 app.post('/save', function (req, res) {
-    userData[`${req.body.location} + ${req.body.arrival} + ${req.body.departure}`] = req.body;
+    userData[`${req.body.location} + ${req.body.arrivalDate} + ${req.body.departureDate}`] = req.body;
     console.log("Trip is saved and user data is now:", userData)
     res.sendStatus(200);
 });
@@ -270,7 +269,7 @@ app.post('/submitForm', async (req, res) => {
             departureDate: response.departureDate,
             tripLength: tripLen,
             countDown: countD,
-            tripWeather: weather,
+            tripWeather: `High: ${weather.maxTemp}°C / ${weather.maxTempF} °F <br> Low: ${weather.minTemp}°C / ${weather.minTempF} °F`,
             image: image
         }
 

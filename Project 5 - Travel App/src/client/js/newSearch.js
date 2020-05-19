@@ -13,6 +13,9 @@ function newSearch() {
     // Show save button again
     document.getElementById("save").style.display = "";
 
+    // Hide delete button again
+    document.getElementById("remove").style.display = "none";
+
 }
 
 export { newSearch }

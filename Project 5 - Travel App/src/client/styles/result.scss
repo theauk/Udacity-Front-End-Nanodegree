@@ -36,19 +36,32 @@
     margin-block-end: 7px;
 }
 
-#length {
+.lengthDiv {
+    display: flex;
+    justify-content: center;
     font-size: 1.1em;
     text-align: center;
-    margin-block-start: 0;
-    margin-block-end: 3px;
+    margin-bottom: 5px;
+
+    p {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-left: 4px;
+    }
 }
 
-#countDown {
+.countDiv {
+    display: flex;
+    justify-content: center;
     font-size: 1.1em;
     font-style: italic;
-    text-align: center;
-    margin-block-start: 0;
-    margin-block-end: 0;
+    margin-bottom: 5px;
+
+    p {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        margin-left: 4px;
+    }
 }
 
 .details {
@@ -127,5 +140,9 @@
 }
 
 #newSearchButton:hover {
-    background-color:  rgb(162, 31, 171);
+    background-color: rgb(162, 31, 171);
+}
+
+#remove {
+    display: none;
 }
