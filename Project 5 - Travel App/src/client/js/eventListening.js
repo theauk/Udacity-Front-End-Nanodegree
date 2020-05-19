@@ -7,7 +7,7 @@ function eventListening() {
         Client.tripSubmit(event);
     });
 
-    // Listen for the new search button
+    // Listen for the search button
     const newSearchButton = document.getElementById("newSearchButton");
     newSearchButton.addEventListener("click", () => {
         console.log("New search button clicked")

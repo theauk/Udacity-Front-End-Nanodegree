@@ -7,6 +7,7 @@ function removeTrip() {
     const id = `${location} + ${arrivalDate} + ${departureDate}`;
     console.log("Delete:", id);
 
+    // Fetch the delete input
     fetch("http://localhost:8081/remove", {
         method: "POST",
         mode: "cors",

@@ -17,8 +17,12 @@ dotenv.config();
 
 // Port
 const port = 8081;
-app.listen(port, function () {
-    console.log(`Listening on port: ${port}`);
+const server = app.listen(port, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`Listening on port: ${port}`);
+    }
 });
 
 app.get('/', function (req, res) {
@@ -27,7 +31,7 @@ app.get('/', function (req, res) {
 
 // For testing the server
 app.get('/test', function (req, res) {
-    res.send({'message':'Working'})
+    res.send({ 'message': 'Working' })
 });
 
 // Array to store the data
@@ -48,6 +52,7 @@ app.post('/save', function (req, res) {
 
 // For removing a trip
 app.post('/remove', function (req, res) {
+    console.log(userData[req.body.id])
     delete userData[req.body.id];
     console.log("After deletion user data is now:", userData);
     res.sendStatus(200);
@@ -60,7 +65,7 @@ const datedif = (day1, day2) => {
     const oneDay = 1000 * 60 * 60 * 24;
     const dateDifference = Math.round((day2.getTime() - day1.getTime()) / oneDay);
 
-    // Check the days
+    // Check if the word should be day or days
     let dayWord = "days"
     if (dateDifference == 1) {
         dayWord = "day";
@@ -112,6 +117,7 @@ const getCoordinates = async (destination) => {
 // Async function to get weather deatils
 const getWeather = async (data, coordinates) => {
 
+    // Get the difference between the two dates
     const arrival = new Date(data.arrivalDate);
     const today = new Date();
     const dateDif = datedif(today, arrival).dateDifference;
@@ -120,7 +126,7 @@ const getWeather = async (data, coordinates) => {
     const baseUrl = "http://api.weatherbit.io/v2.0/";
     const key = process.env.weatherbitKey;
 
-    // Get forecast if arrival date is less than 17 days away 
+    // Get forecast if arrival date is less than 17 days away and not in the past
     if (dateDif < 17 && dateDif >= 0) {
         const fetchURL = `${baseUrl}forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lng}&key=${key}`;
         console.log("Fetch weather URL (forecast):", fetchURL)
@@ -152,7 +158,7 @@ const getWeather = async (data, coordinates) => {
             console.log("error:", error)
         }
 
-        // Get historical weather if arrival date is more than 17 days away 
+        // Get historical weather if arrival date is more than 17 days away or in the past
     } else {
 
         // Find same dates last year
@@ -236,6 +242,7 @@ const pixabay = async (city, country) => {
     }
 }
 
+// Async post function for when a search is performed
 app.post('/submitForm', async (req, res) => {
 
     const response = req.body
@@ -284,4 +291,4 @@ app.post('/submitForm', async (req, res) => {
 
 });
 
-module.exports = app;
+module.exports = { server };

@@ -1,5 +1,6 @@
 function saveTrip() {
 
+    // Get the elements that need to be updated
     const location = document.getElementById("location").innerHTML;
     const country = document.getElementById("country").innerHTML;
     const lenDif = document.getElementById("lengthNumber").innerHTML;
@@ -11,6 +12,7 @@ function saveTrip() {
     const weather = document.getElementById("weatherDetails").innerHTML;
     const image = document.getElementById("resultImg").src;
 
+    // Fetch the save endpoint
     fetch("http://localhost:8081/save", {
         method: "POST",
         mode: "cors",
@@ -45,7 +47,7 @@ function saveTrip() {
 
             tripTiles.insertAdjacentHTML("afterbegin", trip);
 
-            // Add an event listener
+            // Add an event listener that is specific to this trip card
             let newElement = document.getElementById(`${location} + ${arrivalDate} + ${departureDate}`)
             newElement.addEventListener("click", () => {
                 console.log("Trip tile clicked", `${location} + ${arrivalDate} + ${departureDate}`)
@@ -55,6 +57,7 @@ function saveTrip() {
         })
         .catch(err => console.log(err))
 
+    // Update the UI
     Client.newSearch();
 }
 

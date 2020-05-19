@@ -1,5 +1,6 @@
 function validateInput(location, arrival, departure) {
 
+    // Find the difference between the two days
     const oneDay = 1000 * 60 * 60 * 24;
     const arrivalDate = new Date (arrival);
     const departureDate = new Date (departure);

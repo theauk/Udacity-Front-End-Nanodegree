@@ -5,7 +5,7 @@ function tripSubmit(event) {
     const arrival = document.getElementById("arrivalDate").value;
     const departure = document.getElementById("departureDate").value;
 
-    // Validate input
+    // Validate the input
     const validateInput = Client.validateInput(location, arrival, departure);
 
     if (validateInput) {
@@ -36,7 +36,7 @@ function tripSubmit(event) {
                     Client.updateUI(data);
                 }
             })
-            .catch(err => alert(err))
+            .catch(err => console.log(err))
 
     } else {
         console.log("See input error message above")
