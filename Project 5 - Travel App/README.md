@@ -31,7 +31,7 @@ The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates f
   ```
 
 - Run `npm run build-prod` to build the production version.
-- Run `npm build-dev` to start the Webpack Dev server.
+- Run `npm run build-dev` to start the Webpack Dev server.
 - Run `npm run start` in another terminal to start the Express server.
 - The app runs on http://localhost:8080/.
 
