@@ -3,8 +3,8 @@ Web app that allows a users to plan a trip. After inputting the destination and 
 
 The [GeoNames API](http://www.geonames.org/) is used to obtain the coordinates for the destination, which are then used to get the weather forecast from the [Weatherbit API](https://www.weatherbit.io/). If the trip is less than 16 days away, a forecast is provided. For trips further away, historical data is used to predict the weather. Lastly, the [Pixabay API](https://pixabay.com/) is used to get the destination image.
 
-### Extras
-- Adds an end date so that the length of the trip is displayed.
+### Features
+- Provides trip length, countdown, weather forecast, and destination image.
 - An image is pulled from the destination country if the city yields no results.
 - The user can save a trip and view it again later.
 - The user can remove a trip from the saved trip list.
