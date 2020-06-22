@@ -17,8 +17,12 @@ dotenv.config();
 
 // Port
 const port = 8081;
-app.listen(port, function () {
-    console.log(`Listening on port: ${port}`);
+const server = app.listen(port, function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`Listening on port: ${port}`);
+    }
 });
 
 app.get('/', function (req, res) {
@@ -27,7 +31,31 @@ app.get('/', function (req, res) {
 
 // For testing the server
 app.get('/test', function (req, res) {
-    res.send({'message':'Working'})
+    res.send({ 'message': 'Working' })
+});
+
+// Array to store the data
+let userData = {};
+
+// For click on a saved trips
+app.post('/savedTrip', function (req, res) {
+    const element = userData[req.body.trip]
+    res.send(element);
+});
+
+// For saving a trip
+app.post('/save', function (req, res) {
+    userData[`${req.body.location} + ${req.body.arrivalDate} + ${req.body.departureDate}`] = req.body;
+    console.log("Trip is saved and user data is now:", userData)
+    res.sendStatus(200);
+});
+
+// For removing a trip
+app.post('/remove', function (req, res) {
+    console.log(userData[req.body.id])
+    delete userData[req.body.id];
+    console.log("After deletion user data is now:", userData);
+    res.sendStatus(200);
 });
 
 // Function to find the number of days between two specific days
@@ -37,7 +65,7 @@ const datedif = (day1, day2) => {
     const oneDay = 1000 * 60 * 60 * 24;
     const dateDifference = Math.round((day2.getTime() - day1.getTime()) / oneDay);
 
-    // Check the days
+    // Check if the word should be day or days
     let dayWord = "days"
     if (dateDifference == 1) {
         dayWord = "day";
@@ -45,6 +73,12 @@ const datedif = (day1, day2) => {
 
     return { dateDifference: dateDifference, dayWord: dayWord }
 
+}
+
+// Function to convert C to F
+const convertTemp = (tempC) => {
+    let tempF = Math.round(tempC * 9 / 5 + 32);
+    return tempF
 }
 
 // Async fetch function that makes a GET request to the Geonames API
@@ -80,15 +114,10 @@ const getCoordinates = async (destination) => {
     }
 }
 
-// Function to convert C to F
-const convertTemp = (tempC) => {
-    let tempF = tempC * 9 / 5 + 32;
-    return tempF
-}
-
 // Async function to get weather deatils
 const getWeather = async (data, coordinates) => {
 
+    // Get the difference between the two dates
     const arrival = new Date(data.arrivalDate);
     const today = new Date();
     const dateDif = datedif(today, arrival).dateDifference;
@@ -97,7 +126,7 @@ const getWeather = async (data, coordinates) => {
     const baseUrl = "http://api.weatherbit.io/v2.0/";
     const key = process.env.weatherbitKey;
 
-    // Get forecast if arrival date is less than 17 days away 
+    // Get forecast if arrival date is less than 17 days away and not in the past
     if (dateDif < 17 && dateDif >= 0) {
         const fetchURL = `${baseUrl}forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lng}&key=${key}`;
         console.log("Fetch weather URL (forecast):", fetchURL)
@@ -112,8 +141,8 @@ const getWeather = async (data, coordinates) => {
                 if (responseJSON.data[i].valid_date == data.arrivalDate) {
                     const weatherArray = responseJSON.data[i];
                     const weatherJSON = {
-                        maxTemp: weatherArray.max_temp,
-                        minTemp: weatherArray.min_temp,
+                        maxTemp: Math.round(weatherArray.max_temp),
+                        minTemp: Math.round(weatherArray.min_temp),
                         maxTempF: convertTemp(weatherArray.max_temp),
                         minTempF: convertTemp(weatherArray.min_temp)
                     }
@@ -129,7 +158,7 @@ const getWeather = async (data, coordinates) => {
             console.log("error:", error)
         }
 
-        // Get historical weather if arrival date is more than 17 days away 
+        // Get historical weather if arrival date is more than 17 days away or in the past
     } else {
 
         // Find same dates last year
@@ -213,6 +242,7 @@ const pixabay = async (city, country) => {
     }
 }
 
+// Async post function for when a search is performed
 app.post('/submitForm', async (req, res) => {
 
     const response = req.body
@@ -234,7 +264,7 @@ app.post('/submitForm', async (req, res) => {
 
         // Get the countdown
         const countD = datedif(new Date(), new Date(response.arrivalDate));
-        countD.dateDifference += 1;
+        //countD.dateDifference += 1;
 
         // Get the trip length (add one to account for the day itself)
         let tripLen = datedif(new Date(response.arrivalDate), new Date(response.departureDate));
@@ -245,13 +275,13 @@ app.post('/submitForm', async (req, res) => {
 
         const data = {
             // Upper-case first letter
-            destination: response.destination.charAt(0).toUpperCase() + response.destination.slice(1),
+            location: response.destination.charAt(0).toUpperCase() + response.destination.slice(1),
             country: coordinates.country,
             arrivalDate: response.arrivalDate,
             departureDate: response.departureDate,
             tripLength: tripLen,
             countDown: countD,
-            tripWeather: weather,
+            tripWeather: `High: ${weather.maxTemp}°C / ${weather.maxTempF} °F <br> Low: ${weather.minTemp}°C / ${weather.minTempF} °F`,
             image: image
         }
 
@@ -261,4 +291,4 @@ app.post('/submitForm', async (req, res) => {
 
 });
 
-module.exports = app;
+module.exports = { server };

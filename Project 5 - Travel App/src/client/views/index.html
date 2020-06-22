@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <title>Travel App</title>
-  <meta name="description" content="A travel application" />
+  <meta name="description" content="Travel planner application" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -32,9 +32,18 @@
       <div class="resultInfo">
         <img id="resultImg" src="../img/map.jpg">
         <div class="resultHeader">
-          <h3 id="locationName">Location</h3>
-          <p id="length">Length</p>
-          <p id="countDown">Countdown</p>
+          <h3 id="location">Location</h3>
+          <h3 id="country">Country</h3>
+          <div class="lengthDiv">
+            <p id="lengthText">Trip Length:</p>
+            <p id="lengthNumber">#</p>
+            <p id="lengthDays">days</p>
+          </div>
+          <div class="countDiv">
+            <p id="countDownNumber">#</p>
+            <p id="countDownDays">days</p>
+            <p id="countDown">away</p>
+          </div>
         </div>
         <div class="details">
           <p id="arrivalTitle">Arrival</p>
@@ -54,26 +63,23 @@
           <input id="newSearchButton" type="submit" name="" value="New Search">
         </div>
       </div>
-    </section>
-
-    <section id="myTrips">
-      <h2 id="myTripsHeader">My Trips</h2>
-      <div class="tripTiles">
-        <div class="trip" id="trip1">
-          <img class="tripImg" id="tripImg1" src="../img/map.jpg">
-          <h3 class="tripTitle">Trip 1</h3>
-        </div>
-        <div class="trip" id="trip2">
-          <img class="tripImg" id="tripImg2" src="../img/map.jpg">
-          <h3 class="tripTitle">Trip 2</h3>
-        </div>
-        <div class="trip" id="trip3">
-          <img class="tripImg" id="tripImg3" src="../img/map.jpg">
-          <h3 class="tripTitle">Trip 3</h3>
-        </div>
-      </div>
-    </section>
   </div>
+  </section>
+  <section id="myTrips">
+    <h2 id="myTripsHeader">My Trips</h2>
+    <div id="tripTiles">
+    </div>
+  </section>
+  </div>
+  <script>
+    // Check that service workers are supported
+    if ("serviceWorker" in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js");
+      });
+    }
+  </script>
 </body>
 
 </html>

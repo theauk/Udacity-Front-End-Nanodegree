@@ -7,14 +7,13 @@ function eventListening() {
         Client.tripSubmit(event);
     });
 
-    // Listen for the new search button
+    // Listen for the search button
     const newSearchButton = document.getElementById("newSearchButton");
     newSearchButton.addEventListener("click", () => {
         console.log("New search button clicked")
         Client.newSearch();
     });
 
-/*
     // Listen for the save button
     const saveButton = document.getElementById("save");
     saveButton.addEventListener("click", () => {
@@ -26,7 +25,6 @@ function eventListening() {
     removeButton.addEventListener("click", () => {
         Client.removeTrip(event);
     });
-    */
 }
 
 eventListening();
