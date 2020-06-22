@@ -1,4 +1,4 @@
-function eventListening() {
+const eventListening = () => {
 
     // Listen for the submit button
     const submitButton = document.getElementById("submitButton");

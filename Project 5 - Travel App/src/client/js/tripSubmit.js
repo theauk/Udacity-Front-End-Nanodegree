@@ -1,4 +1,4 @@
-function tripSubmit(event) {
+const tripSubmit = (event) => {
     event.preventDefault()
 
     const location = document.getElementById("where").value;

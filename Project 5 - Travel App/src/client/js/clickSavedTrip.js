@@ -1,4 +1,4 @@
-function clickSavedTrip(id) {
+const clickSavedTrip = (id) => {
 
     fetch("http://localhost:8081/savedTrip", {
         method: "POST",

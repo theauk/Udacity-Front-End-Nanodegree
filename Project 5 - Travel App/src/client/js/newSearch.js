@@ -1,4 +1,4 @@
-function newSearch() {
+const newSearch = () => {
 
     // Reset input fields
     document.getElementById("where").value = "";

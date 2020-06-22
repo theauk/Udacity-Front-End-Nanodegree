@@ -1,4 +1,4 @@
-function removeTrip() {
+const removeTrip = () => {
 
     // Get the trip details needed to delete
     const location = document.getElementById("location").innerHTML;

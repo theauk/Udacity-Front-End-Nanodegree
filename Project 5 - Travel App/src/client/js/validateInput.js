@@ -1,4 +1,4 @@
-function validateInput(location, arrival, departure) {
+const validateInput = (location, arrival, departure) => {
 
     // Find the difference between the two days
     const oneDay = 1000 * 60 * 60 * 24;

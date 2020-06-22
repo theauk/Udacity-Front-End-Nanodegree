@@ -1,4 +1,4 @@
-function updateUI(data) {
+const updateUI = (data) => {
 
     // Change the view to show the result page instead
     document.getElementById("addTrip").style.display = "none";

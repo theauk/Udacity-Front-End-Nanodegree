@@ -1,4 +1,4 @@
-function saveTrip() {
+const saveTrip = () => {
 
     // Get the elements that need to be updated
     const location = document.getElementById("location").innerHTML;
