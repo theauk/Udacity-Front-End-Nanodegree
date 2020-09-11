@@ -7,4 +7,4 @@ Projects from Udacity's Front End Nanodegree - Built using HTML, CSS, and JavaSc
 4. [Evaluating News Articles with NLP](https://github.com/theauk/Udacity-Front-End-Nanodegree/tree/master/Project%204%20-%20Evaluate%20News%20Article%20with%20NLP)
 5. [Travel App](https://github.com/theauk/Udacity-Front-End-Nanodegree/tree/master/Project%205%20-%20Travel%20App)
 
-[Certificate of Completion](https://confirm.udacity.com/LK2TKS27)
+<a href="https://confirm.udacity.com/LK2TKS27" target="_blank">Certificate of Completion</a>
